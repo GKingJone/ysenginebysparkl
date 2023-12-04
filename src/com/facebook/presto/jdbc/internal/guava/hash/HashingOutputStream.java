@@ -1,0 +1,80 @@
+/*    */ package com.facebook.presto.jdbc.internal.guava.hash;
+/*    */ 
+/*    */ import com.facebook.presto.jdbc.internal.guava.annotations.Beta;
+/*    */ import com.facebook.presto.jdbc.internal.guava.base.Preconditions;
+/*    */ import java.io.FilterOutputStream;
+/*    */ import java.io.IOException;
+/*    */ import java.io.OutputStream;
+/*    */ 
+/*    */ 
+/*    */ 
+/*    */ 
+/*    */ 
+/*    */ 
+/*    */ 
+/*    */ 
+/*    */ 
+/*    */ 
+/*    */ 
+/*    */ 
+/*    */ 
+/*    */ 
+/*    */ 
+/*    */ 
+/*    */ 
+/*    */ 
+/*    */ 
+/*    */ 
+/*    */ 
+/*    */ 
+/*    */ 
+/*    */ 
+/*    */ 
+/*    */ 
+/*    */ 
+/*    */ 
+/*    */ 
+/*    */ 
+/*    */ @Beta
+/*    */ public final class HashingOutputStream
+/*    */   extends FilterOutputStream
+/*    */ {
+/*    */   private final Hasher hasher;
+/*    */   
+/*    */   public HashingOutputStream(HashFunction hashFunction, OutputStream out)
+/*    */   {
+/* 46 */     super((OutputStream)Preconditions.checkNotNull(out));
+/* 47 */     this.hasher = ((Hasher)Preconditions.checkNotNull(hashFunction.newHasher()));
+/*    */   }
+/*    */   
+/*    */   public void write(int b) throws IOException {
+/* 51 */     this.hasher.putByte((byte)b);
+/* 52 */     this.out.write(b);
+/*    */   }
+/*    */   
+/*    */   public void write(byte[] bytes, int off, int len) throws IOException {
+/* 56 */     this.hasher.putBytes(bytes, off, len);
+/* 57 */     this.out.write(bytes, off, len);
+/*    */   }
+/*    */   
+/*    */ 
+/*    */ 
+/*    */ 
+/*    */   public HashCode hash()
+/*    */   {
+/* 65 */     return this.hasher.hash();
+/*    */   }
+/*    */   
+/*    */ 
+/*    */   public void close()
+/*    */     throws IOException
+/*    */   {
+/* 72 */     this.out.close();
+/*    */   }
+/*    */ }
+
+
+/* Location:              E:\BaiduYunDownload\伊萨时期的一些代码\SparkEngine终极版\jars\YISAEngineBySpark2-4.0.6-SNAPSHOT-jar-with-dependencies.jar!\com\facebook\presto\jdbc\internal\guava\hash\HashingOutputStream.class
+ * Java compiler version: 6 (50.0)
+ * JD-Core Version:       0.7.1
+ */

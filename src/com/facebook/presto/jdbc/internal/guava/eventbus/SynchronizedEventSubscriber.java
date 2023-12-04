@@ -1,0 +1,56 @@
+/*    */ package com.facebook.presto.jdbc.internal.guava.eventbus;
+/*    */ 
+/*    */ import java.lang.reflect.InvocationTargetException;
+/*    */ import java.lang.reflect.Method;
+/*    */ 
+/*    */ 
+/*    */ 
+/*    */ 
+/*    */ 
+/*    */ 
+/*    */ 
+/*    */ 
+/*    */ 
+/*    */ 
+/*    */ 
+/*    */ 
+/*    */ 
+/*    */ 
+/*    */ 
+/*    */ 
+/*    */ 
+/*    */ 
+/*    */ 
+/*    */ 
+/*    */ 
+/*    */ 
+/*    */ 
+/*    */ 
+/*    */ 
+/*    */ 
+/*    */ 
+/*    */ 
+/*    */ 
+/*    */ 
+/*    */ final class SynchronizedEventSubscriber
+/*    */   extends EventSubscriber
+/*    */ {
+/*    */   public SynchronizedEventSubscriber(Object target, Method method)
+/*    */   {
+/* 40 */     super(target, method);
+/*    */   }
+/*    */   
+/*    */   public void handleEvent(Object event)
+/*    */     throws InvocationTargetException
+/*    */   {
+/* 46 */     synchronized (this) {
+/* 47 */       super.handleEvent(event);
+/*    */     }
+/*    */   }
+/*    */ }
+
+
+/* Location:              E:\BaiduYunDownload\伊萨时期的一些代码\SparkEngine终极版\jars\YISAEngineBySpark2-4.0.6-SNAPSHOT-jar-with-dependencies.jar!\com\facebook\presto\jdbc\internal\guava\eventbus\SynchronizedEventSubscriber.class
+ * Java compiler version: 6 (50.0)
+ * JD-Core Version:       0.7.1
+ */
